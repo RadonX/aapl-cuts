@@ -1,0 +1,25 @@
+/*
+	Convert the input if it has URL(s).
+	
+	Input:
+	- `ShortcutInput`: The shortcut input, which can be any type of data (e.g., text, URL, etc.).
+
+	Output:
+	- If the input is a URL, the shortcut outputs the URL(s) extracted from the input.
+	- If the input is not a URL, the shortcut outputs the original input unchanged.
+*/
+#define color darkgray
+#define glyph braille
+
+const URLs = getURLs(ShortcutInput)
+if !URLs {
+	// Returns early if the input is not a URL.
+	output(ShortcutInput)
+}
+/* When the code reaches here, it returns the last action's output, which is equivalent to: */
+// output(URLs)
+/*
+  We can't use the output(URLs) statement here because:
+  1. Cherri doesn't support control flow action output: output((if!URLs)).
+  2. Cherri doesn't support output(an URL array).
+*/
