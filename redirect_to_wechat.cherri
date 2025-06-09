@@ -1,0 +1,24 @@
+/*
+	Redirects to WeChat app from the input http://mp.weixin.qq.com URL.
+
+	Input:
+	- `ShortcutInput`: The shortcut input, which is a http://mp.weixin.qq.com URL
+
+	Output:
+	- No output, redirects to WeChat if input is valid.
+*/
+#define mac false // Only helpful on mobile with WeChat installed
+#define noinput askfor text
+
+#define color green
+#define glyph messageBubbles
+
+const response = formRequest("https://mp.weixin.qq.com/mp/jumptoweixin", "POST", {
+	"click_type": "bar_praise",
+	"link": "{ShortcutInput}"
+}, {
+	"Cookie": "rewardsn=; wxtokenkey=777; mm_lang=zh_CN"
+})
+const wx_url = getValue(response, 'url') // Extracts a weixin:// scheme URL from the response
+/* The weixin link only works on mobile */
+openURL(wx_url)

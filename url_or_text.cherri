@@ -8,6 +8,7 @@
 	- If the input is a URL, the shortcut outputs the URL(s) extracted from the input.
 	- If the input is not a URL, the shortcut outputs the original input unchanged.
 */
+#define noinput getclipboard
 #define color darkgray
 #define glyph braille
 

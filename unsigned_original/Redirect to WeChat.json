@@ -1,0 +1,133 @@
+{
+   "WFWorkflowMinimumClientVersionString": "1113",
+   "WFWorkflowMinimumClientVersion": 1113,
+   "WFWorkflowIcon": {
+      "WFWorkflowIconStartColor": 4292093695,
+      "WFWorkflowIconGlyphNumber": 59403
+   },
+   "WFWorkflowClientVersion": "3607.0.2",
+   "WFWorkflowOutputContentItemClasses": [],
+   "WFWorkflowHasOutputFallback": false,
+   "WFWorkflowNoInputBehavior": {
+      "Name": "WFWorkflowNoInputBehaviorAskForInput",
+      "Parameters": {
+         "ItemClass": "WFStringContentItem"
+      }
+   },
+   "WFWorkflowActions": [
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.downloadurl",
+         "WFWorkflowActionParameters": {
+            "WFFormValues": {
+               "Value": {
+                  "WFDictionaryFieldValueItems": [
+                     {
+                        "WFItemType": 0,
+                        "WFKey": {
+                           "Value": {
+                              "string": "link"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        },
+                        "WFValue": {
+                           "Value": {
+                              "string": "\uFFFC",
+                              "attachmentsByRange": {
+                                 "{0, 1}": {
+                                    "Type": "ExtensionInput"
+                                 }
+                              }
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        }
+                     },
+                     {
+                        "WFItemType": 0,
+                        "WFKey": {
+                           "Value": {
+                              "string": "click_type"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        },
+                        "WFValue": {
+                           "Value": {
+                              "string": "bar_praise"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        }
+                     }
+                  ]
+               },
+               "WFSerializationType": "WFDictionaryFieldValue"
+            },
+            "WFHTTPHeaders": {
+               "Value": {
+                  "WFDictionaryFieldValueItems": [
+                     {
+                        "WFItemType": 0,
+                        "WFKey": {
+                           "Value": {
+                              "string": "Cookie"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        },
+                        "WFValue": {
+                           "Value": {
+                              "string": "rewardsn=; wxtokenkey=777; mm_lang=zh_CN"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        }
+                     }
+                  ]
+               },
+               "WFSerializationType": "WFDictionaryFieldValue"
+            },
+            "UUID": "E9C5BC4D-567D-43E4-9CFB-F0894976C40A",
+            "WFHTTPMethod": "POST",
+            "ShowHeaders": true,
+            "WFURL": "https://mp.weixin.qq.com/mp/jumptoweixin",
+            "WFHTTPBodyType": "Form",
+            "CustomOutputName": "response"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.getvalueforkey",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "OutputUUID": "E9C5BC4D-567D-43E4-9CFB-F0894976C40A",
+                  "Type": "ActionOutput",
+                  "OutputName": "response"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "CustomOutputName": "wx_url",
+            "UUID": "7F4A28E0-D4EF-4815-8DD7-3D11BC4A6BE2",
+            "WFDictionaryKey": "url"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.openurl",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "OutputUUID": "7F4A28E0-D4EF-4815-8DD7-3D11BC4A6BE2",
+                  "Type": "ActionOutput",
+                  "OutputName": "wx_url"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "UUID": "7A690978-DCDE-439B-8AEA-BCEC901F88BD"
+         }
+      }
+   ],
+   "WFWorkflowInputContentItemClasses": [
+      "WFAppContentItem",
+      "WFStringContentItem",
+      "WFURLContentItem"
+   ],
+   "WFWorkflowImportQuestions": [],
+   "WFQuickActionSurfaces": [],
+   "WFWorkflowTypes": [],
+   "WFWorkflowHasShortcutInputVariables": true
+}
