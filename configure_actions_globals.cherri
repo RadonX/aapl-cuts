@@ -1,0 +1,48 @@
+/*
+    Configures and updates environment global variables.
+
+    Menu Options:
+    - Clear: Deletes the selected variable.
+    - Set/Toggle: Updates the variable based on its type.
+*/
+#include 'action_libraries/actions.cherri'
+#define color violet
+
+const actions_global_vars = actionsGetAll()
+const chosen_action_var = chooseFromList(actions_global_vars)
+// Force text type conversion, https://github.com/electrikmilk/cherri/issues/90
+const action_var_name = "{chosen_action_var['Name']}"
+const action_var_value = "{chosen_action_var}"
+
+menu "Update variable {action_var_name}" {
+
+item "Clear":
+    actionsDelete(action_var_name)
+    @user_input = "deleted"
+
+item "Set/Toggle":
+    const action_var_type = typeOf(chosen_action_var)
+
+	// run("Logging INFO", action_var_type)
+	if action_var_type == "Text" {
+        if action_var_name endsWith "_config" {
+            const Dictionary = getDictionary(chosen_action_var)
+            @user_input = prompt("", "Text", action_var_value)
+        } else {
+            @user_input = prompt("")
+        }
+        actionsSetText(action_var_name, user_input)
+	} else {
+		if action_var_type == "Number" {
+			const Numbers = getNumbers(Ask)
+            actionsSetNumber(action_var_name, Numbers)
+			@user_input = Numbers
+		}
+		if action_var_type == "Bool" {
+            actionsSetBoolean(action_var_name, true) // true means toggle
+			@user_input = "toggle"
+		}
+	}
+}
+
+showNotification("{action_var_name}: {user_input}", "", false)
