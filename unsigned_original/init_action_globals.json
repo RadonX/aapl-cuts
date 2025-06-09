@@ -1,0 +1,263 @@
+{
+   "WFWorkflowMinimumClientVersionString": "900",
+   "WFWorkflowMinimumClientVersion": 900,
+   "WFWorkflowIcon": {
+      "WFWorkflowIconStartColor": -314141441,
+      "WFWorkflowIconGlyphNumber": 61440
+   },
+   "WFWorkflowClientVersion": "3607.0.2",
+   "WFWorkflowOutputContentItemClasses": [],
+   "WFWorkflowHasOutputFallback": false,
+   "WFWorkflowActions": [
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.list",
+         "WFWorkflowActionParameters": {
+            "WFItems": [
+               "debug_level"
+            ],
+            "CustomOutputName": "int_vars",
+            "UUID": "8DE126AF-519A-40B0-AF95-1DCDF043CD52"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.repeat.each",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "OutputUUID": "8DE126AF-519A-40B0-AF95-1DCDF043CD52",
+                  "Type": "ActionOutput",
+                  "OutputName": "int_vars"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "GroupingIdentifier": "3D926B76-AD9E-4710-982C-AAB228BC3412",
+            "WFControlFlowMode": 0
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "com.sindresorhus.Actions.GlobalVariableGetNumber",
+         "WFWorkflowActionParameters": {
+            "key": {
+               "Value": {
+                  "VariableName": "Repeat Item",
+                  "Type": "Variable"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "UUID": "5BDDCB0A-54C1-49A2-8299-8E93C4007E83",
+            "AppIntentDescriptor": {
+               "TeamIdentifier": "YG56YK5RN5",
+               "BundleIdentifier": "com.sindresorhus.Actions",
+               "Name": "Actions",
+               "AppIntentIdentifier": "GlobalVariableGetNumber"
+            }
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Type": "Variable",
+               "Variable": {
+                  "Value": {
+                     "OutputUUID": "5BDDCB0A-54C1-49A2-8299-8E93C4007E83",
+                     "Type": "ActionOutput",
+                     "OutputName": "Global Variable — Number"
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+               }
+            },
+            "WFControlFlowMode": 0,
+            "GroupingIdentifier": "D88ACB65-C5F5-4E5E-8518-A689ED87F781",
+            "WFCondition": 101
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "com.sindresorhus.Actions.GlobalVariableSetNumber",
+         "WFWorkflowActionParameters": {
+            "value": "0",
+            "key": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "VariableName": "Repeat Item",
+                        "Type": "Variable"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "37086234-F2CC-4993-B35B-23B6F3909763",
+            "AppIntentDescriptor": {
+               "TeamIdentifier": "YG56YK5RN5",
+               "BundleIdentifier": "com.sindresorhus.Actions",
+               "Name": "Actions",
+               "AppIntentIdentifier": "GlobalVariableSetNumber"
+            }
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFControlFlowMode": 2,
+            "GroupingIdentifier": "D88ACB65-C5F5-4E5E-8518-A689ED87F781",
+            "UUID": "6AE851E9-31B9-46A9-8CFD-1FEDF67DD3FF"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.repeat.each",
+         "WFWorkflowActionParameters": {
+            "WFControlFlowMode": 2,
+            "GroupingIdentifier": "3D926B76-AD9E-4710-982C-AAB228BC3412",
+            "UUID": "6A10F3C7-54CF-4470-A036-DD0A1AA49A0A"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.dictionary",
+         "WFWorkflowActionParameters": {
+            "WFItems": {
+               "Value": {
+                  "WFDictionaryFieldValueItems": [
+                     {
+                        "WFItemType": 0,
+                        "WFKey": {
+                           "Value": {
+                              "string": "model"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        },
+                        "WFValue": {
+                           "Value": {
+                              "string": "GPT-4o"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        }
+                     }
+                  ]
+               },
+               "WFSerializationType": "WFDictionaryFieldValue"
+            },
+            "UUID": "89B95487-BCCE-49F4-A3F7-9DB1BD60B9D8"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "com.sindresorhus.Actions.GlobalVariableSetText",
+         "WFWorkflowActionParameters": {
+            "value": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "89B95487-BCCE-49F4-A3F7-9DB1BD60B9D8",
+                        "Type": "ActionOutput",
+                        "OutputName": "Dictionary"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "key": "chatgpt_config",
+            "UUID": "B117E7CD-A7CE-47E5-8CEF-AAF8C972CFCD",
+            "AppIntentDescriptor": {
+               "TeamIdentifier": "YG56YK5RN5",
+               "BundleIdentifier": "com.sindresorhus.Actions",
+               "Name": "Actions",
+               "AppIntentIdentifier": "GlobalVariableSetText"
+            }
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.dictionary",
+         "WFWorkflowActionParameters": {
+            "WFItems": {
+               "Value": {
+                  "WFDictionaryFieldValueItems": [
+                     {
+                        "WFItemType": 3,
+                        "WFKey": {
+                           "Value": {
+                              "string": "font"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        },
+                        "WFValue": {
+                           "Value": {
+                              "string": "0"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        }
+                     },
+                     {
+                        "WFItemType": 4,
+                        "WFKey": {
+                           "Value": {
+                              "string": "assistive_touch"
+                           },
+                           "WFSerializationType": "WFTextTokenString"
+                        },
+                        "WFValue": {
+                           "Value": false,
+                           "WFSerializationType": "WFNumberSubstitutableState"
+                        }
+                     }
+                  ]
+               },
+               "WFSerializationType": "WFDictionaryFieldValue"
+            },
+            "UUID": "7938CACD-2FD6-4CB3-9E74-93B355282585"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "com.sindresorhus.Actions.GlobalVariableSetText",
+         "WFWorkflowActionParameters": {
+            "value": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "7938CACD-2FD6-4CB3-9E74-93B355282585",
+                        "Type": "ActionOutput",
+                        "OutputName": "Dictionary"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "key": "system_config",
+            "UUID": "FE0E180E-3015-43F3-BC1C-82EE1BFDA48F",
+            "AppIntentDescriptor": {
+               "TeamIdentifier": "YG56YK5RN5",
+               "BundleIdentifier": "com.sindresorhus.Actions",
+               "Name": "Actions",
+               "AppIntentIdentifier": "GlobalVariableSetText"
+            }
+         }
+      }
+   ],
+   "WFWorkflowInputContentItemClasses": [
+      "WFAppContentItem",
+      "WFAppStoreAppContentItem",
+      "WFArticleContentItem",
+      "WFContactContentItem",
+      "WFDateContentItem",
+      "WFEmailAddressContentItem",
+      "WFFolderContentItem",
+      "WFGenericFileContentItem",
+      "WFImageContentItem",
+      "WFiTunesProductContentItem",
+      "WFLocationContentItem",
+      "WFDCMapsLinkContentItem",
+      "WFAVAssetContentItem",
+      "WFPDFContentItem",
+      "WFPhoneNumberContentItem",
+      "WFRichTextContentItem",
+      "WFSafariWebPageContentItem",
+      "WFStringContentItem",
+      "WFURLContentItem"
+   ],
+   "WFWorkflowImportQuestions": [],
+   "WFWorkflowTypes": [],
+   "WFQuickActionSurfaces": [],
+   "WFWorkflowHasShortcutInputVariables": false
+}

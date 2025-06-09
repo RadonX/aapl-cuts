@@ -1,0 +1,25 @@
+#define name Env - Init Actions Globals
+#include 'action_libraries/actions.cherri'
+
+// Init the integer variables
+const int_vars = list("debug_level") // Define the variable names
+for _ in int_vars {
+	const current_value = actionsGetNumber("RepeatItem")
+	if !current_value {
+		actionsSetNumber("RepeatItem", 0)
+	}
+}
+
+// Init the dictionary variables, which end with "_config"
+const chatgpt_config = {
+	"model": "GPT-4o"
+}
+const chatgpt_config_text = getText(chatgpt_config)
+actionsSetText("chatgpt_config", chatgpt_config_text)
+
+const system_config = {
+	"assistive_touch": false,
+	"font": 0
+}
+const system_config_text = getText(system_config)
+actionsSetText("system_config", system_config_text)

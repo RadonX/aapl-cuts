@@ -19,6 +19,6 @@ const response = formRequest("https://mp.weixin.qq.com/mp/jumptoweixin", "POST",
 }, {
 	"Cookie": "rewardsn=; wxtokenkey=777; mm_lang=zh_CN"
 })
-const wx_url = getValue(response, 'url') // Extracts a weixin:// scheme URL from the response
+const wx_url = getValue(response, 'url') // Extracts a weixin://dl/business/?ticket=... URL from the response
 /* The weixin link only works on mobile */
 openURL(wx_url)

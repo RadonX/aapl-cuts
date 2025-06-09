@@ -1,0 +1,28 @@
+/*
+3rd Party Actions: Sindre Sorhus Actions
+*/
+
+#define action 'com.sindresorhus.Actions.GlobalVariableGetAll' actionsGetAll(): dictionary
+
+#define action 'com.sindresorhus.Actions.GlobalVariableDelete' actionsDelete(
+    variable keys: 'keys'
+)
+
+#define action 'com.sindresorhus.Actions.GlobalVariableSetText' actionsSetText(
+    text key: 'key',
+    text value: 'value'
+)
+
+#define action 'com.sindresorhus.Actions.GlobalVariableSetNumber' actionsSetNumber(
+    text key: 'key',
+    number value: 'value'
+)
+
+#define action 'com.sindresorhus.Actions.GlobalVariableSetBoolean' actionsSetBoolean(
+    text key: 'key',
+    bool shouldToggle: 'shouldToggle'
+)
+
+#define action 'com.sindresorhus.Actions.GlobalVariableGetText' actionsGetNumber(
+    text key: 'key'
+): number

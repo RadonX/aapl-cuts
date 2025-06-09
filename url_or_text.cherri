@@ -24,3 +24,4 @@ if !URLs {
   1. Cherri doesn't support control flow action output: output((if!URLs)).
   2. Cherri doesn't support output(an URL array).
 */
+output(URLs)
