@@ -12,6 +12,7 @@
 #define color darkgray
 #define glyph braille
 
+// Extracts URLs from the input. Note: This must be a hyperlink; raw text "http" is not supported.
 const URLs = getURLs(ShortcutInput)
 if !URLs {
 	// Returns early if the input is not a URL.

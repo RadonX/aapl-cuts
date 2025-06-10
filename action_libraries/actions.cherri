@@ -26,3 +26,7 @@
 #define action 'com.sindresorhus.Actions.GlobalVariableGetText' actionsGetNumber(
     text key: 'key'
 ): number
+
+#define action 'com.sindresorhus.Actions.GlobalVariableGetBoolean' actionsGetBoolean(
+    text key: 'key'
+): bool
