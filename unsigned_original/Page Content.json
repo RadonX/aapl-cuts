@@ -1,0 +1,385 @@
+{
+   "WFWorkflowMinimumClientVersionString": "1113",
+   "WFWorkflowMinimumClientVersion": 1113,
+   "WFWorkflowIcon": {
+      "WFWorkflowIconStartColor": 463140863,
+      "WFWorkflowIconGlyphNumber": 61440
+   },
+   "WFWorkflowClientVersion": "3607.0.2",
+   "WFWorkflowOutputContentItemClasses": [],
+   "WFWorkflowHasOutputFallback": false,
+   "WFWorkflowActions": [
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+         "WFWorkflowActionParameters": {
+            "WFCommentActionText": "Don’t convert the type of shortcut input in its setting. "
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.getitemtype",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "Type": "ExtensionInput"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "CustomOutputName": "shortcut_input_type",
+            "UUID": "2542A348-9D71-4B06-A93C-4BD6BA2385A2"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "OutputUUID": "2542A348-9D71-4B06-A93C-4BD6BA2385A2",
+                  "Type": "ActionOutput",
+                  "OutputName": "shortcut_input_type"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "WFVariableName": "input_type"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+         "WFWorkflowActionParameters": {
+            "WFCommentActionText": "TODO: a smarter criteria to decide if a URL is article or text compatible. "
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+         "WFWorkflowActionParameters": {
+            "WFTextActionText": "Article, Safari web page",
+            "CustomOutputName": "text compatible type",
+            "UUID": "0D809751-31A9-48B6-800D-D819A69836B0"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Type": "Variable",
+               "Variable": {
+                  "Value": {
+                     "OutputUUID": "0D809751-31A9-48B6-800D-D819A69836B0",
+                     "Type": "ActionOutput",
+                     "OutputName": "text compatible type"
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+               }
+            },
+            "WFControlFlowMode": 0,
+            "WFConditionalActionString": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "2542A348-9D71-4B06-A93C-4BD6BA2385A2",
+                        "Type": "ActionOutput",
+                        "OutputName": "shortcut_input_type"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "GroupingIdentifier": "CA1BF036-2B5D-4145-9899-18F9A3F4141B",
+            "WFCondition": 99
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+         "WFWorkflowActionParameters": {
+            "WFCommentActionText": "This action is compatible with many types of input. It’s faster. It extracts all the text, including the title. "
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.detect.text",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "Type": "ExtensionInput"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "UUID": "5D162BCF-0D47-4A07-9246-BF19C4A7155B"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.output",
+         "WFWorkflowActionParameters": {
+            "WFNoOutputSurfaceBehavior": "Respond",
+            "WFOutput": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "5D162BCF-0D47-4A07-9246-BF19C4A7155B",
+                        "Type": "ActionOutput",
+                        "OutputName": "Text"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "658EACAD-50E2-4F89-929A-9AE9A218307E",
+            "WFResponse": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "5D162BCF-0D47-4A07-9246-BF19C4A7155B",
+                        "Type": "ActionOutput",
+                        "OutputName": "Text"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            }
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+         "WFWorkflowActionParameters": {
+            "WFCommentActionText": "Some page URLs, e.g. YouTube, iCloud file, don’t support Article (like Safari Reader).\nThe Body part exclude the title, etc. "
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.properties.articles",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "Type": "ExtensionInput"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "WFContentItemPropertyName": "Body",
+            "UUID": "218C2B8F-E2CD-4472-9411-EC744CA97A53"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFControlFlowMode": 2,
+            "GroupingIdentifier": "CA1BF036-2B5D-4145-9899-18F9A3F4141B",
+            "UUID": "9336E015-2F5D-448A-AE29-99C6E6EB8175"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+         "WFWorkflowActionParameters": {
+            "WFTextActionText": "Safari web page, URL",
+            "CustomOutputName": "article compatible type",
+            "UUID": "8D8AC23E-6980-4B63-B977-FB6F91DF2C65"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Type": "Variable",
+               "Variable": {
+                  "Value": {
+                     "OutputUUID": "8D8AC23E-6980-4B63-B977-FB6F91DF2C65",
+                     "Type": "ActionOutput",
+                     "OutputName": "article compatible type"
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+               }
+            },
+            "WFControlFlowMode": 0,
+            "WFConditionalActionString": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "2542A348-9D71-4B06-A93C-4BD6BA2385A2",
+                        "Type": "ActionOutput",
+                        "OutputName": "shortcut_input_type"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "GroupingIdentifier": "0481B89B-CA53-42F5-B6F5-7BE44DC3F88A",
+            "WFCondition": 99
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.getarticle",
+         "WFWorkflowActionParameters": {
+            "WFWebPage": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "Type": "ExtensionInput"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "1AD66301-02AC-4846-BBCB-756C0296A209"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.output",
+         "WFWorkflowActionParameters": {
+            "WFNoOutputSurfaceBehavior": "Respond",
+            "WFOutput": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "Type": "ActionOutput",
+                        "OutputName": "Article",
+                        "OutputUUID": "1AD66301-02AC-4846-BBCB-756C0296A209",
+                        "Aggrandizements": [
+                           {
+                              "Type": "WFPropertyVariableAggrandizement",
+                              "PropertyName": "Body"
+                           }
+                        ]
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "099F463C-B07C-40BC-A927-F0F7EE9C82A7",
+            "WFResponse": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "Type": "ActionOutput",
+                        "OutputName": "Article",
+                        "OutputUUID": "1AD66301-02AC-4846-BBCB-756C0296A209",
+                        "Aggrandizements": [
+                           {
+                              "Type": "WFPropertyVariableAggrandizement",
+                              "PropertyName": "Body"
+                           }
+                        ]
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            }
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFControlFlowMode": 2,
+            "GroupingIdentifier": "0481B89B-CA53-42F5-B6F5-7BE44DC3F88A",
+            "UUID": "E974D98D-315F-4174-A7AA-0C83BA99805D"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Type": "Variable",
+               "Variable": {
+                  "Value": {
+                     "VariableName": "input_type",
+                     "Type": "Variable"
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+               }
+            },
+            "WFControlFlowMode": 0,
+            "WFConditionalActionString": "URL",
+            "GroupingIdentifier": "1ACB0A28-AF17-4043-BD1E-BA7CB88B09EA",
+            "WFCondition": 4
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+         "WFWorkflowActionParameters": {
+            "WFCommentActionText": "iCloud or YouTube link should reach here."
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.getwebpagecontents",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "Type": "ExtensionInput"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "C9E01F2E-C3ED-4482-95D4-B68E068E9353"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.output",
+         "WFWorkflowActionParameters": {
+            "WFOutput": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "C9E01F2E-C3ED-4482-95D4-B68E068E9353",
+                        "Type": "ActionOutput",
+                        "OutputName": "Contents of Web Page"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "9DE55F5A-275F-4E93-95B2-8F0B60E83D3D"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFControlFlowMode": 2,
+            "GroupingIdentifier": "1ACB0A28-AF17-4043-BD1E-BA7CB88B09EA",
+            "UUID": "11142639-345E-43E0-9181-ACFD924E8F36"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+         "WFWorkflowActionParameters": {
+            "WFCommentActionText": "Fetch HTML file (Rich text), equivalent to “Get contents of web page”, but without redirect \n\nBelow won’t be reached. "
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.downloadurl",
+         "WFWorkflowActionParameters": {
+            "WFURL": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "Type": "ExtensionInput"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "2BB84F8C-3D18-4528-9E31-5F0C2909FBC7"
+         }
+      }
+   ],
+   "WFWorkflowInputContentItemClasses": [
+      "WFAppContentItem",
+      "WFURLContentItem",
+      "WFStringContentItem",
+      "WFArticleContentItem",
+      "WFSafariWebPageContentItem",
+      "WFRichTextContentItem",
+      "WFGenericFileContentItem"
+   ],
+   "WFWorkflowImportQuestions": [],
+   "WFWorkflowTypes": [],
+   "WFQuickActionSurfaces": [],
+   "WFWorkflowHasShortcutInputVariables": false
+}

@@ -2,12 +2,14 @@
  * Converts various input types to text.
  * If the input is/has a URL, the web content will be returned instead.
  * 
- * Dependencies: [url_or_text.shortcut, Page Content.shortcut]
+ * Dependencies: [url_or_text.shortcut, page_content.shortcut]
  */
 #define noinput askfor text
 #define color darkgray
 #define glyph printer
 #include 'action_libraries/actions.cherri'
+const shortcut_url_or_text = "url_or_text"
+const shortcut_page_content = "page_content"
 
 const input_type = typeOf(ShortcutInput)
 
@@ -18,17 +20,17 @@ if debug_level > 0 {
 }
 
 if input_type == "Text" {
-    const url_or_text_result = run("url_or_text", ShortcutInput)
+    const url_or_text_result = run(shortcut_url_or_text, ShortcutInput)
     const url_or_text_type = typeOf(url_or_text_result)
     
     if url_or_text_type == "Text" {
         output(ShortcutInput)
     } else {
-        const web_page_from_url_in_text = run("Page Content", url_or_text_result) // TODO: use updated shortcut
+        const web_page_from_url_in_text = run(shortcut_page_content, url_or_text_result) // TODO: use updated shortcut
         output(web_page_from_url_in_text)
     }
 } else if input_type == "URL" {
-    const web_page_from_url = run("Page Content", ShortcutInput) // TODO: use updated shortcut
+    const web_page_from_url = run(shortcut_page_content, ShortcutInput) // TODO: use updated shortcut
     output(web_page_from_url)
 } else {
     if debug_level > 1 {

@@ -1,0 +1,43 @@
+/*
+ * Handles various input types and processes them into corresponding web content:
+ *
+ * Input:
+ * - `ShortcutInput`: Any web-related types such as "Article", "Safari web page", or "URL".
+ *
+ * Output:
+ * - If the input type is compatible with text extraction (e.g., "Article, Safari web page"):
+ *   Outputs all extracted text, including the title.
+ * - If the input type is compatible with articles (e.g., URL"):
+ *   Outputs the body of the article.
+  */
+#define noinput askfor text
+#define color blue
+
+const shortcut_input_type = typeOf(ShortcutInput)
+
+const text_compatible_type = "Article, Safari web page" // a.k.a Safari Reader
+if text_compatible_type contains shortcut_input_type {
+	// The `getText` action is compatible with many types of input.
+	// It’s faster. It extracts all the text, including the title.
+	// Alternative: `getArticleDetail(ShortcutInput, "Body")` which excludes the title, etc.
+	const text = getText(ShortcutInput)
+	mustOutput(text, text)
+}
+
+const article_compatible_type = "Safari web page, URL"
+if article_compatible_type contains shortcut_input_type {
+	const article = getArticle(ShortcutInput)
+	mustOutput(article['Body'], article['Body'])
+}
+
+// Below is unreachable code.
+// TODO: a smarter criteria to decide if a URL is text_compatible_type or article_compatible_type. 
+
+if shortcut_input_type == "URL" {
+	// iCloud or YouTube links should reach here. They are not compatible with Article.
+	// Alternative: `getWebpageContents(ShortcutInput)` which is equivalent to “Get contents of web page” action.
+	const contents_of_web_page = getWebpageContents(ShortcutInput)
+	output(contents_of_web_page)
+	// Fetch HTML file (Rich text), equivalent to `getWebpageContents`, but without redirect.
+	downloadURL(ShortcutInput)
+}
