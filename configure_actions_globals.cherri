@@ -5,7 +5,7 @@
     - Clear: Deletes the selected variable.
     - Set/Toggle: Updates the variable based on its type.
 */
-#include 'action_libraries/actions.cherri'
+#include 'app_store/actions.cherri'
 #define color violet
 
 const actions_global_vars = actionsGetAll()
