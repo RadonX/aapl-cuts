@@ -3,14 +3,16 @@
  *
  * Input:
  * - `ShortcutInput`: Any web-related types such as "Article", "Safari web page", or "URL".
+ * - If input is not provided, it will prompt the user for input.
  *
  * Output:
- * - If the input type is compatible with text extraction (e.g., "Article, Safari web page"):
+ * - If the input type is compatible with text extraction (e.g., Article, Safari web page):
  *   Outputs all extracted text, including the title.
- * - If the input type is compatible with articles (e.g., URL"):
+ * - If the input type is compatible with articles (e.g., URL):
  *   Outputs the body of the article.
-  */
-#define noinput askfor text
+ * - Otherwise:
+ *   Outputs .webarchive file.
+ */
 #define color blue
 
 const shortcut_input_type = typeOf(ShortcutInput)
@@ -30,14 +32,17 @@ if article_compatible_type contains shortcut_input_type {
 	mustOutput(article['Body'], article['Body'])
 }
 
-// Below is unreachable code.
 // TODO: a smarter criteria to decide if a URL is text_compatible_type or article_compatible_type. 
+// iCloud or YouTube links should reach here. They are not compatible with Article.
 
-if shortcut_input_type == "URL" {
-	// iCloud or YouTube links should reach here. They are not compatible with Article.
-	// Alternative: `getWebpageContents(ShortcutInput)` which is equivalent to “Get contents of web page” action.
-	const contents_of_web_page = getWebpageContents(ShortcutInput)
-	output(contents_of_web_page)
-	// Fetch HTML file (Rich text), equivalent to `getWebpageContents`, but without redirect.
-	downloadURL(ShortcutInput)
+if !ShortcutInput {
+	@other_type_input = "{Ask}"
+} else {
+	@other_type_input = ShortcutInput
 }
+const contents_of_web_page = getWebpageContents(other_type_input)
+output(contents_of_web_page)
+
+// Below is unreachable code.
+// Fetch HTML file (Rich text), equivalent to `getWebpageContents`, but without redirect.
+downloadURL(ShortcutInput)
