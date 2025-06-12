@@ -14,7 +14,7 @@
 					<key>CustomOutputName</key>
 					<string>URLs</string>
 					<key>UUID</key>
-					<string>6c5055c2-d0fe-4db8-bf4f-7cc138e0c4c6</string>
+					<string>ba5b4ea4-98ce-4cd0-9a00-998aae13188f</string>
 					<key>WFInput</key>
 					<dict>
 						<key>Value</key>
@@ -43,9 +43,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>6a6c13a2-a40e-43e9-9690-e2e543cc2296</string>
+					<string>7e6956a8-434d-487e-824e-9dce981a49f2</string>
 					<key>UUID</key>
-					<string>a3c819bd-c565-4da7-9ddd-1bfada56c99b</string>
+					<string>d43c1d24-fb75-42af-854e-84b897e70cb2</string>
 					<key>WFConditions</key>
 					<dict>
 						<key>Value</key>
@@ -68,7 +68,7 @@
 												<key>OutputName</key>
 												<string>URLs</string>
 												<key>OutputUUID</key>
-												<string>6c5055c2-d0fe-4db8-bf4f-7cc138e0c4c6</string>
+												<string>ba5b4ea4-98ce-4cd0-9a00-998aae13188f</string>
 												<key>Type</key>
 												<string>ActionOutput</string>
 											</dict>
@@ -125,9 +125,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>6a6c13a2-a40e-43e9-9690-e2e543cc2296</string>
+					<string>7e6956a8-434d-487e-824e-9dce981a49f2</string>
 					<key>UUID</key>
-					<string>b5c2a9bb-d75b-4687-af5b-52105f185ca8</string>
+					<string>f0f1ae6a-04e1-491f-bced-15fe14b5babe</string>
 					<key>WFControlFlowMode</key>
 					<integer>2</integer>
 				</dict>
@@ -150,26 +150,26 @@
 		<array/>
 		<key>WFWorkflowInputContentItemClasses</key>
 		<array>
-			<string>WFImageContentItem</string>
-			<string>WFSafariWebPageContentItem</string>
 			<string>WFStringContentItem</string>
-			<string>WFNumberContentItem</string>
-			<string>WFContactContentItem</string>
-			<string>WFFolderContentItem</string>
-			<string>WFDCMapsLinkContentItem</string>
-			<string>WFPDFContentItem</string>
-			<string>WFURLContentItem</string>
 			<string>WFAppStoreAppContentItem</string>
 			<string>WFArticleContentItem</string>
-			<string>WFDateContentItem</string>
-			<string>WFGenericFileContentItem</string>
-			<string>WFLocationContentItem</string>
-			<string>WFAVAssetContentItem</string>
+			<string>WFFolderContentItem</string>
+			<string>WFDCMapsLinkContentItem</string>
 			<string>WFPhoneNumberContentItem</string>
-			<string>WFiTunesProductContentItem</string>
 			<string>WFRichTextContentItem</string>
+			<string>WFSafariWebPageContentItem</string>
+			<string>WFNumberContentItem</string>
+			<string>WFContactContentItem</string>
+			<string>WFLocationContentItem</string>
 			<string>WFDictionaryContentItem</string>
+			<string>WFDateContentItem</string>
+			<string>WFiTunesProductContentItem</string>
+			<string>WFURLContentItem</string>
 			<string>WFEmailAddressContentItem</string>
+			<string>WFGenericFileContentItem</string>
+			<string>WFImageContentItem</string>
+			<string>WFAVAssetContentItem</string>
+			<string>WFPDFContentItem</string>
 		</array>
 		<key>WFWorkflowMinimumClientVersion</key>
 		<integer>900</integer>
@@ -180,9 +180,12 @@
 		<key>WFWorkflowNoInputBehavior</key>
 		<dict>
 			<key>Name</key>
-			<string>WFWorkflowNoInputBehaviorGetClipboard</string>
+			<string>WFWorkflowNoInputBehaviorAskForInput</string>
 			<key>Parameters</key>
-			<dict/>
+			<dict>
+				<key>ItemClass</key>
+				<string>WFStringContentItem</string>
+			</dict>
 		</dict>
 		<key>WFWorkflowOutputContentItemClasses</key>
 		<array/>

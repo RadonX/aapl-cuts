@@ -8,13 +8,13 @@
 	- If the input is a URL, the shortcut outputs the URL(s) extracted from the input.
 	- If the input is not a URL, the shortcut outputs the original input unchanged.
 */
-#define noinput getclipboard
+#define noinput askfor text
 #define color darkgray
 #define glyph braille
 
 // Extracts URLs from the input.
 // If ShortcutInput is a long text with URLs. The URLs must be hyperlinks.
-// Raw text "http://" is only not supported when there isn't non-url text.
+// Raw text "http://" is only supported when there isn't non-url text.
 const URLs = getURLs(ShortcutInput)
 if !URLs {
 	// Returns early if the input is not a URL.
@@ -27,4 +27,4 @@ if !URLs {
   1. Cherri doesn't support control flow action output: output((if!URLs)).
   2. Cherri doesn't support output(an URL array).
 */
-output(URLs)
+// output(URLs)
