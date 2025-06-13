@@ -1,13 +1,21 @@
 /*
- * Converts various input types to text.
- * If the input is/has a URL, the web content will be returned instead.
- * 
- * Dependencies: [url_or_text.shortcut, web_content.shortcut]
- */
+    Converts various input types to text.
+
+    Input:
+    - Any type of data.
+
+    Output:
+    - If the input is a URL (plain text URL is also accepted), the shortcut fetches web article of the URL.
+    - Otherwise, use the native getText() action to convert the input to text.
+
+    Dependencies: [url_or_text.shortcut, web_content.shortcut]
+*/
 #define noinput askfor text
 #define color darkgray
 #define glyph printer
-#include 'app_store/actions.cherri'
+#include 'app_store/Actions.cherri'
+
+// TODO: Does this action handle multiple URLs?
 
 const input_type = typeOf(ShortcutInput)
 
@@ -25,20 +33,26 @@ if input_type == "Text" {
     const url_or_text_result = run("url_or_text", ShortcutInput)
     const url_or_text_type = typeOf(url_or_text_result)
     
-    if url_or_text_type == "Text" {
-        output(ShortcutInput)
-    } else {
-        const web_page_from_url_in_text = run("web_content", url_or_text_result)
-        output(web_page_from_url_in_text)
-    }
+    if url_or_text_type == "URL" {
+        @some_url = url_or_text_result
+    } 
+    output(ShortcutInput)
 } else if input_type == "URL" {
-    const web_page_from_url = run("web_content", ShortcutInput)
-    output(web_page_from_url)
+    @some_url = ShortcutInput
 } else {
     if debug_level > 1 {
         showNotification("Converting {input_type} to text", input_type)
     }
     
+    // web_content.shortcut provides special handling for web artifacts.
+    // This general shortcut just uses the basic getText action.
     const text = getText(ShortcutInput)
     mustOutput(text, text)
 }
+
+const article = getArticle(some_url)
+output(article['Body'])
+// The code below is unreachable.
+// Alternative: Use web_content.shortcut only when it has special URL handling.
+const web_page = run("web_content", some_url)
+output(web_page)
