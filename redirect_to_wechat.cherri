@@ -8,6 +8,7 @@
 	- No output, redirects to WeChat if input is valid.
 */
 #define mac false // Only helpful on mobile with WeChat installed
+#define inputs text,url
 #define noinput askfor text
 
 #define color green

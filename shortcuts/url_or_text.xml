@@ -14,7 +14,7 @@
 					<key>CustomOutputName</key>
 					<string>URLs</string>
 					<key>UUID</key>
-					<string>ba5b4ea4-98ce-4cd0-9a00-998aae13188f</string>
+					<string>b0adbd33-d7a1-4dd4-9d0a-69accb3be544</string>
 					<key>WFInput</key>
 					<dict>
 						<key>Value</key>
@@ -43,9 +43,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>7e6956a8-434d-487e-824e-9dce981a49f2</string>
+					<string>147be3b2-f2d2-4cbb-b463-7de2d6aedec5</string>
 					<key>UUID</key>
-					<string>d43c1d24-fb75-42af-854e-84b897e70cb2</string>
+					<string>05c3603b-e88a-4be3-a06b-3a272a33d9c8</string>
 					<key>WFConditions</key>
 					<dict>
 						<key>Value</key>
@@ -68,7 +68,7 @@
 												<key>OutputName</key>
 												<string>URLs</string>
 												<key>OutputUUID</key>
-												<string>ba5b4ea4-98ce-4cd0-9a00-998aae13188f</string>
+												<string>b0adbd33-d7a1-4dd4-9d0a-69accb3be544</string>
 												<key>Type</key>
 												<string>ActionOutput</string>
 											</dict>
@@ -125,9 +125,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>7e6956a8-434d-487e-824e-9dce981a49f2</string>
+					<string>147be3b2-f2d2-4cbb-b463-7de2d6aedec5</string>
 					<key>UUID</key>
-					<string>f0f1ae6a-04e1-491f-bced-15fe14b5babe</string>
+					<string>d1bb2791-d010-4b47-b694-4fd7a71819a8</string>
 					<key>WFControlFlowMode</key>
 					<integer>2</integer>
 				</dict>
@@ -151,25 +151,7 @@
 		<key>WFWorkflowInputContentItemClasses</key>
 		<array>
 			<string>WFStringContentItem</string>
-			<string>WFAppStoreAppContentItem</string>
-			<string>WFArticleContentItem</string>
-			<string>WFFolderContentItem</string>
-			<string>WFDCMapsLinkContentItem</string>
-			<string>WFPhoneNumberContentItem</string>
-			<string>WFRichTextContentItem</string>
-			<string>WFSafariWebPageContentItem</string>
-			<string>WFNumberContentItem</string>
-			<string>WFContactContentItem</string>
-			<string>WFLocationContentItem</string>
-			<string>WFDictionaryContentItem</string>
-			<string>WFDateContentItem</string>
-			<string>WFiTunesProductContentItem</string>
 			<string>WFURLContentItem</string>
-			<string>WFEmailAddressContentItem</string>
-			<string>WFGenericFileContentItem</string>
-			<string>WFImageContentItem</string>
-			<string>WFAVAssetContentItem</string>
-			<string>WFPDFContentItem</string>
 		</array>
 		<key>WFWorkflowMinimumClientVersion</key>
 		<integer>900</integer>
