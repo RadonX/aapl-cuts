@@ -6,7 +6,7 @@
 	- Sets up dictionary variables (end with "_config").
 */
 #define name Env - Init Actions Globals
-#include 'app_store/actions.cherri'
+#include 'app_store/Actions.cherri'
 
 // Init the integer variables
 const int_vars = list("debug_level") // Define the variable names
