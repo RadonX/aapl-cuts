@@ -1,0 +1,39 @@
+/*
+    AI Summarizes web content shared via Share Sheet.
+
+    Input:
+    - Accepts web artifacts from the Share Sheet.
+
+    Output:
+    - Displays a short summary, matching the original style and language.
+    - Prompts the user to open the ChatGPT app after summarization.
+
+    Dependencies: [web_content.shortcut]
+*/
+#define name Quick Read (web)
+#define from sharesheet
+#define inputs article,richtext,webpage,text,url
+#define noinput stopwith "Invoke me from a Web Share Sheet."
+#define color pink
+#define glyph server
+#define version 17
+#include 'app_store/Actions.cherri'
+#include 'app_store/ChatGPT.cherri'
+
+const web_content = run("web_content", ShortcutInput)
+
+// actionsGetNumber is not a native action. Must coerce its output to a number.
+const debug_level_key = "debug_level"
+@debug_level: number
+@debug_level = actionsGetNumber(debug_level_key)
+if debug_level > 0 {
+    show(web_content)
+}
+
+const prompt = "<ARTICLE>\n\n{web_content}\n\n</ARTICLE>\n\nSummarize <ARTICLE> in a short summary. Don't make a conclusion. Use expressions that match the style of <ARTICLE/>.\n\nLANGUAGE=original language of <ARTICLE>.\n\nSummarize directly."
+
+const response = askChatGPTOnce(prompt, false)
+show(response)
+
+confirm("Open ChatGPT app?", "")
+openApp(app_chatgpt)

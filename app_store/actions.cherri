@@ -23,7 +23,7 @@
     bool shouldToggle: 'shouldToggle'
 )
 
-#define action 'com.sindresorhus.Actions.GlobalVariableGetText' actionsGetNumber(
+#define action 'com.sindresorhus.Actions.GlobalVariableGetNumber' actionsGetNumber(
     text key: 'key'
 ): number
 

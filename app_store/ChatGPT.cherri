@@ -1,0 +1,53 @@
+
+/*  ChatGPT - OpenAI */
+
+const app_chatgpt = "com.openai.chat"
+
+/**
+ * Asks ChatGPT a question using the specified prompt.
+ *
+ * @param prompt The text prompt to send to ChatGPT.
+ * @param ShowWhenRun (Optional) Whether to display the response using the native `alert()` action. Defaults to `false`.
+ * @param model (Optional) The model to use. Available options include "GPT-4o", "GPT-4.1", "GPT-4.1-mini", "o4-mini", "o4-mini-high", "o3", "GPT-4.5".
+ * @return The text response from ChatGPT.
+ */
+#define action 'com.openai.chat.AskIntent' askChatGPTOnce(
+    text prompt: 'prompt',
+    bool ShowWhenRun: 'ShowWhenRun',
+    text ?model: 'model' = "GPT-4o"
+): text {
+    "continuous": false,
+    "newChat": true
+}
+
+/**
+ * Interacts with ChatGPT in a continuous mode.
+ *
+ * ChatGPT uses the native `prompt()` action (Ask for Input) to display ChatGPT's
+ * response and accept user's follow-up input. However, the UX is not designed for long
+ * message thus it's not convenient to interact with ChatGPT in this mode.
+ *
+ * @param prompt The text prompt to send to ChatGPT.
+ */
+// The "newChat" param is ignored, as new chat is always created.
+// The "ShowWhenRun" param is ignored, as the continuous mode always shows the response.
+#define action 'com.openai.chat.AskIntent' askChatGPTContinuous(
+    text prompt: 'prompt'
+) {
+    "continuous": true,
+    "newChat" : false,
+    "ShowWhenRun": false
+}
+
+#define action 'com.openai.chat.OpenVoiceModeIntent' openChatGPTVoiceMode()
+
+/**
+ * Opens a new chat in the ChatGPT app using the specified action.
+ *
+ * @param startAction (Optional) The initial action to perform when opening the chat. Available options include "photoLibrary", "camera", and "whisper".
+ * @param useSearchGPT (Optional) Whether to enable the Search feature.
+ */
+#define action 'com.openai.chat.OpenNewChatInAppShortcutIntent' openChatGPT(
+    text startAction: 'startAction' = "photoLibrary",
+    bool ?useSearchGPT: 'useSearchGPT' = false
+)
