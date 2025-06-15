@@ -14,11 +14,15 @@
  *   Outputs .webarchive file.
  */
 #define color blue
+#define inputs article,richtext,webpage,text,url
+// My iOS version is still 17.5. The conditional statement is different for iOS 18.
+#define version 17
 
-const shortcut_input_type = typeOf(ShortcutInput)
+const input_type = typeOf(ShortcutInput)
+showNotification(input_type.text, "", false, ShortcutInput)
 
 const text_compatible_type = "Article, Safari web page" // a.k.a Safari Reader
-if text_compatible_type contains shortcut_input_type {
+if text_compatible_type contains input_type {
 	// The `getText` action is compatible with many types of input.
 	// It’s faster. It extracts all the text, including the title.
 	// Alternative: `getArticleDetail(ShortcutInput, "Body")` which excludes the title, etc.
@@ -26,9 +30,12 @@ if text_compatible_type contains shortcut_input_type {
 	mustOutput(text, text)
 }
 
-const article_compatible_type = "Safari web page, URL"
-if article_compatible_type contains shortcut_input_type {
-	const article = getArticle(ShortcutInput)
+// Note that in English system, a Safari web page will be captured by the `getText` action above.
+// I am still testing this shortcut to decide the best way to handle Safari web pages.
+const article_compatible_type = "Safari web page, URL, Safari浏览器网页"
+if article_compatible_type contains input_type {
+	// This action only extracts main content, and includes formatted text.
+	const article = getArticle(ShortcutInput) // a.k.a Safari Reader
 	mustOutput(article['Body'], article['Body'])
 }
 
