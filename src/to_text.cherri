@@ -13,6 +13,7 @@
 #define noinput askfor text
 #define color darkgray
 #define glyph printer
+#define version 17
 #include 'app_store/Actions.cherri'
 
 // TODO: Does this action handle multiple URLs?
@@ -24,7 +25,7 @@ const input_type = typeOf(ShortcutInput)
 const action_debug_level = actionsGetNumber("debug_level")
 @debug_level: number
 @debug_level = action_debug_level
-
+// and there needs to be another line after the @debug_level variable.
 if debug_level > 0 {
     showNotification("{input_type}: {ShortcutInput}", "", false, ShortcutInput)
 }

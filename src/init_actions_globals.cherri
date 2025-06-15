@@ -6,6 +6,7 @@
 	- Sets up dictionary variables (end with "_config").
 */
 #define name Env - Init Actions Globals
+#define version 17
 #include 'app_store/Actions.cherri'
 
 // Init the integer variables

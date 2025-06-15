@@ -34,3 +34,6 @@ cherri --import="Exported Shortcut File.plist" # Outputs Exported_Shortcut_File.
 
 - **Runtime Type System**  
   Apple Shortcuts has a runtime type system. In Cherri, explicit [type coercion](https://cherrilang.org/language/types.html#type-coercion) is necessary. For instance, `"{chosen_action_var['Name']}"` converts the value to text.
+
+- **iOS Version Compatibility**  
+  Starting with iOS 18, there are changes in shortcut syntax. For compatibility, include `#define version 17` in your Cherri source code. This ensures that the compiled shortcuts function correctly on iOS versions below 18.
