@@ -1,0 +1,39 @@
+/*
+	Extracts and resolves Weibo's shortened t.cn URL to its original destination.
+
+	Input:
+	- `ShortcutInput`: A text input containing an http://t.cn URL.
+
+	Output:
+	- If a valid URL is found in the t.cn web page, outputs the resolved URL.
+	- If no URL is found, outputs the t.cn webpage.
+	- Outputs nothing if the input does not contain a valid t.cn URL.
+*/
+#define inputs text,url
+#define noinput askfor text
+#define color darkblue
+#define glyph compass
+
+@t_cn_url = "{ShortcutInput}"
+if t_cn_url beginsWith "http://t.cn/" {
+} else {
+	const t_cn_urls = matchText("(http://t.cn/\\w+)", ShortcutInput, false)
+	// Get the first t.cn URL from the input text.
+	@t_cn_url = getMatchGroup(t_cn_urls, 0)
+	if !t_cn_url {
+		stop()
+	}
+}
+
+// TODO: Try Article and compare performance
+const t_cn_web = getWebpageContents(t_cn_url)
+const t_cn_content = getText(t_cn_web)
+
+// It's raw text, so we cannot use the getURLs() action.
+const match_urls = matchText("(https?://\\S+)", t_cn_content, false)
+const link = getMatchGroup(match_urls, 0)
+if link {
+	output(link)
+} else {
+	output(t_cn_content)
+}

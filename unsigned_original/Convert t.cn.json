@@ -1,0 +1,211 @@
+{
+   "WFWorkflowMinimumClientVersionString": "1113",
+   "WFWorkflowMinimumClientVersion": 1113,
+   "WFWorkflowIcon": {
+      "WFWorkflowIconStartColor": 946986751,
+      "WFWorkflowIconGlyphNumber": 59717
+   },
+   "WFWorkflowClientVersion": "3607.0.2",
+   "WFWorkflowOutputContentItemClasses": [],
+   "WFWorkflowHasOutputFallback": false,
+   "WFWorkflowActions": [
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Type": "Variable",
+               "Variable": {
+                  "Value": {
+                     "Type": "ExtensionInput",
+                     "Aggrandizements": [
+                        {
+                           "Type": "WFCoercionVariableAggrandizement",
+                           "CoercionItemClass": "WFStringContentItem"
+                        }
+                     ]
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+               }
+            },
+            "WFControlFlowMode": 0,
+            "WFConditionalActionString": "http://t.cn/",
+            "GroupingIdentifier": "0B4939DB-ABCF-4F2A-A799-D5603E4E6E10",
+            "WFCondition": 8
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+         "WFWorkflowActionParameters": {
+            "WFCommentActionText": "Get the link on the page of the first URL"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.downloadurl",
+         "WFWorkflowActionParameters": {
+            "WFURL": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "Type": "ExtensionInput"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "1B09EB0D-9449-4246-A6E2-C5133775CA0A",
+            "ShowHeaders": false
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.gethtmlfromrichtext",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "OutputUUID": "1B09EB0D-9449-4246-A6E2-C5133775CA0A",
+                  "Type": "ActionOutput",
+                  "OutputName": "URL的内容"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "UUID": "B5E75FA3-7CA0-4286-8B41-7A6E67BDB220"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.text.match",
+         "WFWorkflowActionParameters": {
+            "WFMatchTextCaseSensitive": false,
+            "WFMatchTextPattern": "<a +href=\"(.+?)\".+>继续访问</a>",
+            "UUID": "6C26B690-C963-4563-845E-3B35575A62C3",
+            "text": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "B5E75FA3-7CA0-4286-8B41-7A6E67BDB220",
+                        "Type": "ActionOutput",
+                        "OutputName": "来自多信息文本的HTML"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            }
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.text.match.getgroup",
+         "WFWorkflowActionParameters": {
+            "matches": {
+               "Value": {
+                  "OutputUUID": "6C26B690-C963-4563-845E-3B35575A62C3",
+                  "Type": "ActionOutput",
+                  "OutputName": "Matches"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "CustomOutputName": "link",
+            "UUID": "E88EDCD2-7ABE-45C4-A29B-6016C698ECF6"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Type": "Variable",
+               "Variable": {
+                  "Value": {
+                     "Type": "ActionOutput",
+                     "OutputName": "link",
+                     "OutputUUID": "E88EDCD2-7ABE-45C4-A29B-6016C698ECF6",
+                     "Aggrandizements": [
+                        {
+                           "Type": "WFCoercionVariableAggrandizement",
+                           "CoercionItemClass": "WFStringContentItem"
+                        }
+                     ]
+                  },
+                  "WFSerializationType": "WFTextTokenAttachment"
+               }
+            },
+            "WFControlFlowMode": 0,
+            "WFConditionalActionString": "http",
+            "GroupingIdentifier": "A76D1D81-0FAD-4A35-9756-D0D355C396C4",
+            "WFCondition": 8
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.output",
+         "WFWorkflowActionParameters": {
+            "WFOutput": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "E88EDCD2-7ABE-45C4-A29B-6016C698ECF6",
+                        "Type": "ActionOutput",
+                        "OutputName": "link"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            }
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "GroupingIdentifier": "A76D1D81-0FAD-4A35-9756-D0D355C396C4",
+            "WFControlFlowMode": 1
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.alert",
+         "WFWorkflowActionParameters": {
+            "WFAlertActionCancelButtonShown": false,
+            "WFAlertActionMessage": {
+               "Value": {
+                  "string": "No link on \uFFFC",
+                  "attachmentsByRange": {
+                     "{11, 1}": {
+                        "Type": "ExtensionInput"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            }
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFControlFlowMode": 2,
+            "GroupingIdentifier": "A76D1D81-0FAD-4A35-9756-D0D355C396C4",
+            "UUID": "9887EE39-5B5B-47F1-8300-6C80E3CE6E2B"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+         "WFWorkflowActionParameters": {
+            "WFControlFlowMode": 2,
+            "GroupingIdentifier": "0B4939DB-ABCF-4F2A-A799-D5603E4E6E10",
+            "UUID": "231A9097-1DE6-475F-A123-910768A84C51"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.nothing",
+         "WFWorkflowActionParameters": {
+            "UUID": "88FED29A-4E53-4245-A177-2ACA7DF74FFA"
+         }
+      }
+   ],
+   "WFWorkflowInputContentItemClasses": [
+      "WFStringContentItem",
+      "WFURLContentItem"
+   ],
+   "WFWorkflowImportQuestions": [],
+   "WFWorkflowTypes": [
+      "Watch"
+   ],
+   "WFQuickActionSurfaces": [],
+   "WFWorkflowHasShortcutInputVariables": false
+}
