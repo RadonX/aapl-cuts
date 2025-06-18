@@ -14,7 +14,7 @@
 					<key>CustomOutputName</key>
 					<string>action_key</string>
 					<key>UUID</key>
-					<string>354c91c8-2a02-4461-a138-587bb19b5bd4</string>
+					<string>fb6953f6-9299-4a56-b1fb-7148c230baed</string>
 					<key>WFTextActionText</key>
 					<string>current_app</string>
 				</dict>
@@ -27,7 +27,7 @@
 					<key>CustomOutputName</key>
 					<string>current_app</string>
 					<key>UUID</key>
-					<string>99dbb6e5-cf82-41b1-80d9-de363524e5f3</string>
+					<string>db17d320-5b38-4691-85d4-4de45173f12d</string>
 					<key>key</key>
 					<dict>
 						<key>Value</key>
@@ -39,7 +39,7 @@
 									<key>OutputName</key>
 									<string>action_key</string>
 									<key>OutputUUID</key>
-									<string>354c91c8-2a02-4461-a138-587bb19b5bd4</string>
+									<string>fb6953f6-9299-4a56-b1fb-7148c230baed</string>
 									<key>Type</key>
 									<string>ActionOutput</string>
 								</dict>
@@ -58,9 +58,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>9d3be3af-3b4c-4f80-9a8e-a8ae4c3b4494</string>
+					<string>7749ea2b-6b71-4830-81a7-5a33f4836a15</string>
 					<key>UUID</key>
-					<string>80acc3fa-e254-4b55-b3fa-b3d564bf4a08</string>
+					<string>39b48fd3-4825-4f9e-93bc-29623eb3993e</string>
 					<key>WFCondition</key>
 					<integer>101</integer>
 					<key>WFControlFlowMode</key>
@@ -76,7 +76,7 @@
 								<key>OutputName</key>
 								<string>current_app</string>
 								<key>OutputUUID</key>
-								<string>99dbb6e5-cf82-41b1-80d9-de363524e5f3</string>
+								<string>db17d320-5b38-4691-85d4-4de45173f12d</string>
 								<key>Type</key>
 								<string>ActionOutput</string>
 							</dict>
@@ -113,9 +113,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>9d3be3af-3b4c-4f80-9a8e-a8ae4c3b4494</string>
+					<string>7749ea2b-6b71-4830-81a7-5a33f4836a15</string>
 					<key>UUID</key>
-					<string>4a20ceca-4053-4ea4-b36b-6dff9f165d2e</string>
+					<string>7fb6f983-3e59-4d9a-b590-577374df1e74</string>
 					<key>WFControlFlowMode</key>
 					<integer>2</integer>
 				</dict>
@@ -128,13 +128,37 @@
 					<key>CustomOutputName</key>
 					<string>smart_app_shortcuts</string>
 					<key>UUID</key>
-					<string>2ad50a67-a612-4b95-bfd5-2a21c1f1665e</string>
+					<string>b5e0b298-3a1d-405f-ba66-50390bc0880e</string>
 					<key>WFItems</key>
 					<dict>
 						<key>Value</key>
 						<dict>
 							<key>WFDictionaryFieldValueItems</key>
 							<array>
+								<dict>
+									<key>WFItemType</key>
+									<integer>0</integer>
+									<key>WFKey</key>
+									<dict>
+										<key>Value</key>
+										<dict>
+											<key>string</key>
+											<string>WeChat</string>
+										</dict>
+										<key>WFSerializationType</key>
+										<string>WFTextTokenString</string>
+									</dict>
+									<key>WFValue</key>
+									<dict>
+										<key>Value</key>
+										<dict>
+											<key>string</key>
+											<string>Smart WeChat</string>
+										</dict>
+										<key>WFSerializationType</key>
+										<string>WFTextTokenString</string>
+									</dict>
+								</dict>
 								<dict>
 									<key>WFItemType</key>
 									<integer>0</integer>
@@ -153,7 +177,7 @@
 										<key>Value</key>
 										<dict>
 											<key>string</key>
-											<string>Smart Weibo</string>
+											<string>smart_weibo</string>
 										</dict>
 										<key>WFSerializationType</key>
 										<string>WFTextTokenString</string>
@@ -183,30 +207,6 @@
 										<string>WFTextTokenString</string>
 									</dict>
 								</dict>
-								<dict>
-									<key>WFItemType</key>
-									<integer>0</integer>
-									<key>WFKey</key>
-									<dict>
-										<key>Value</key>
-										<dict>
-											<key>string</key>
-											<string>WeChat</string>
-										</dict>
-										<key>WFSerializationType</key>
-										<string>WFTextTokenString</string>
-									</dict>
-									<key>WFValue</key>
-									<dict>
-										<key>Value</key>
-										<dict>
-											<key>string</key>
-											<string>Smart WeChat</string>
-										</dict>
-										<key>WFSerializationType</key>
-										<string>WFTextTokenString</string>
-									</dict>
-								</dict>
 							</array>
 						</dict>
 						<key>WFSerializationType</key>
@@ -222,7 +222,7 @@
 					<key>CustomOutputName</key>
 					<string>shortcut_name</string>
 					<key>UUID</key>
-					<string>f1bdb131-9ae9-4798-a06c-92e66469d0a7</string>
+					<string>c8dd3339-9510-4596-a895-35b3a5fff039</string>
 					<key>WFDictionaryKey</key>
 					<dict>
 						<key>Value</key>
@@ -234,7 +234,7 @@
 									<key>OutputName</key>
 									<string>current_app</string>
 									<key>OutputUUID</key>
-									<string>99dbb6e5-cf82-41b1-80d9-de363524e5f3</string>
+									<string>db17d320-5b38-4691-85d4-4de45173f12d</string>
 									<key>Type</key>
 									<string>ActionOutput</string>
 								</dict>
@@ -254,7 +254,7 @@
 							<key>OutputName</key>
 							<string>smart_app_shortcuts</string>
 							<key>OutputUUID</key>
-							<string>2ad50a67-a612-4b95-bfd5-2a21c1f1665e</string>
+							<string>b5e0b298-3a1d-405f-ba66-50390bc0880e</string>
 							<key>Type</key>
 							<string>ActionOutput</string>
 						</dict>
@@ -269,9 +269,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>845a60c2-6750-43a7-8783-a87e587ed317</string>
+					<string>897194ac-bd53-4a20-8305-4998420e518a</string>
 					<key>UUID</key>
-					<string>78e11c15-3cbe-431e-91a2-9d7b46adce09</string>
+					<string>0704e80c-6843-4384-a3c0-96d7ba04fc7e</string>
 					<key>WFCondition</key>
 					<integer>101</integer>
 					<key>WFControlFlowMode</key>
@@ -287,7 +287,7 @@
 								<key>OutputName</key>
 								<string>shortcut_name</string>
 								<key>OutputUUID</key>
-								<string>f1bdb131-9ae9-4798-a06c-92e66469d0a7</string>
+								<string>c8dd3339-9510-4596-a895-35b3a5fff039</string>
 								<key>Type</key>
 								<string>ActionOutput</string>
 							</dict>
@@ -313,7 +313,7 @@
 									<key>OutputName</key>
 									<string>current_app</string>
 									<key>OutputUUID</key>
-									<string>99dbb6e5-cf82-41b1-80d9-de363524e5f3</string>
+									<string>db17d320-5b38-4691-85d4-4de45173f12d</string>
 									<key>Type</key>
 									<string>ActionOutput</string>
 								</dict>
@@ -344,9 +344,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>845a60c2-6750-43a7-8783-a87e587ed317</string>
+					<string>897194ac-bd53-4a20-8305-4998420e518a</string>
 					<key>UUID</key>
-					<string>04d762c0-57cf-4694-8814-7f33490d3096</string>
+					<string>8af4442c-34a6-4a72-ae9a-69068972af94</string>
 					<key>WFControlFlowMode</key>
 					<integer>2</integer>
 				</dict>
@@ -363,7 +363,7 @@
 							<key>OutputName</key>
 							<string>shortcut_name</string>
 							<key>OutputUUID</key>
-							<string>f1bdb131-9ae9-4798-a06c-92e66469d0a7</string>
+							<string>c8dd3339-9510-4596-a895-35b3a5fff039</string>
 							<key>Type</key>
 							<string>ActionOutput</string>
 						</dict>
@@ -390,26 +390,26 @@
 		<array/>
 		<key>WFWorkflowInputContentItemClasses</key>
 		<array>
-			<string>WFAppStoreAppContentItem</string>
-			<string>WFContactContentItem</string>
-			<string>WFFolderContentItem</string>
+			<string>WFGenericFileContentItem</string>
 			<string>WFImageContentItem</string>
-			<string>WFLocationContentItem</string>
-			<string>WFURLContentItem</string>
+			<string>WFiTunesProductContentItem</string>
 			<string>WFDCMapsLinkContentItem</string>
-			<string>WFAVAssetContentItem</string>
 			<string>WFSafariWebPageContentItem</string>
+			<string>WFStringContentItem</string>
+			<string>WFArticleContentItem</string>
+			<string>WFContactContentItem</string>
 			<string>WFDateContentItem</string>
 			<string>WFEmailAddressContentItem</string>
+			<string>WFFolderContentItem</string>
+			<string>WFAVAssetContentItem</string>
+			<string>WFLocationContentItem</string>
 			<string>WFPDFContentItem</string>
+			<string>WFAppStoreAppContentItem</string>
 			<string>WFPhoneNumberContentItem</string>
-			<string>WFDictionaryContentItem</string>
-			<string>WFArticleContentItem</string>
-			<string>WFGenericFileContentItem</string>
-			<string>WFiTunesProductContentItem</string>
 			<string>WFRichTextContentItem</string>
-			<string>WFStringContentItem</string>
+			<string>WFDictionaryContentItem</string>
 			<string>WFNumberContentItem</string>
+			<string>WFURLContentItem</string>
 		</array>
 		<key>WFWorkflowMinimumClientVersion</key>
 		<integer>900</integer>

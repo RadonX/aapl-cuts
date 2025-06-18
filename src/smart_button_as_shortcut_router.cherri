@@ -1,5 +1,7 @@
 /*
     A unified entry point (e.g. the side button) that routes to per-app shortcut.
+
+    Dependencies: [smart_weibo.shortcut]
 */
 #define name Smart Button - Shortcut Router
 #define version 17
@@ -14,7 +16,7 @@ if !current_app {
 
 const smart_app_shortcuts = {
     "WeChat": "Smart WeChat",
-    "Weibo": "Smart Weibo",
+    "Weibo": "smart_weibo",
     "XHS": "Smart XHS"
 }
 // Get the shortcut to run for the current app

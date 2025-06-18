@@ -1,0 +1,67 @@
+#define inputs text,url
+#define noinput getclipboard
+#define glyph fire
+#define color orange
+#define version 17
+#include 'app_store/Actions.cherri'
+
+const text_or_url = run("url_or_text", ShortcutInput)
+const input_type = typeOf(text_or_url)
+if input_type == "URL" {
+    if text_or_url beginsWith "http://mp.weixin.qq.com" {
+	    run("redirect_to_wechat", text_or_url)
+        stop()
+    } else {
+        if text_or_url beginsWith "http://t.cn/" {
+            const external_url = run("redirect_weibo_url", text_or_url)
+			run("Share To +", external_url) // TODO: update shortcut
+            stop()
+        } else {
+            @weibo_url = text_or_url
+        }
+    }
+} else {
+    @get_screen = false
+	if !ShortcutInput {
+		@get_screen = true
+	} else {
+		menu nil {
+		item "Share: {ShortcutInput}":
+			const ShortcutResult1 = run("Share To +", ShortcutInput) // TODO: update shortcut
+			output(ShortcutResult1)
+		item "Fetch Current Post": 
+			@get_screen = true
+		}
+	}
+}
+
+if get_screen {
+	const screen_content = getOnScreenContent()
+	if screen_content {
+		@weibo_url = screen_content
+		const Text = "SmartWeibo | Get on screen post {weibo_url} "
+		run("debug__Logging", Text) // TODO: update shortcut
+	}
+}
+if !weibo_url {
+	stop()
+}
+
+const weibo_url_temp = "{weibo_url}"
+if weibo_url_temp contains "://weibo.com/" {
+    // The OnScreen Weibo URL requires login. Convert it to a mobile URL.
+	@weibo_url = replaceText("//weibo\\.com/\\d+", "//m.weibo.cn/status", weibo_url, false, true)
+}
+
+const url_content = getArticle(weibo_url) // may should use `web`
+const content_word_count = count(url_content, "Characters")
+if content_word_count > 500 {
+/*
+    TODO:
+    Many actions doesn't work with long input. 
+    www.decarpentier.nl/carpentopod works with show() 
+    Weibo status doesn’t 
+*/
+	show(url_content)
+}
+run("Share To +", url_content) // TODO: update shortcut
