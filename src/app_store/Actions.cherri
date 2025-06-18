@@ -18,10 +18,21 @@
     number value: 'value'
 )
 
+#define action 'com.sindresorhus.Actions.GlobalVariableSetNumber' actionsIncNumber(
+    text key: 'key'
+) {
+	"action": "increment",
+	"value": "1"
+}
+
 #define action 'com.sindresorhus.Actions.GlobalVariableSetBoolean' actionsSetBoolean(
     text key: 'key',
     bool shouldToggle: 'shouldToggle'
 )
+
+#define action 'com.sindresorhus.Actions.GlobalVariableGetText' actionsGetText(
+    text key: 'key'
+): text
 
 #define action 'com.sindresorhus.Actions.GlobalVariableGetNumber' actionsGetNumber(
     text key: 'key'
@@ -29,4 +40,8 @@
 
 #define action 'com.sindresorhus.Actions.GlobalVariableGetBoolean' actionsGetBoolean(
     text key: 'key'
+): bool
+
+#define action 'com.sindresorhus.Actions.Boolean' actionsBoolean(
+    bool boolean: 'boolean'
 ): bool

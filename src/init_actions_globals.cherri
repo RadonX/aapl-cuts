@@ -10,11 +10,20 @@
 #include 'app_store/Actions.cherri'
 
 // Init the integer variables
-const int_vars = list("debug_level") // Define the variable names
-for _ in int_vars {
-	const current_value = actionsGetNumber("RepeatItem")
-	if !current_value {
-		actionsSetNumber("RepeatItem", 0)
+const int_vars = list("debug_level")
+for int_name in int_vars {
+	const int_var = actionsGetNumber(int_name)
+	if !int_var {
+		actionsSetNumber(int_name, 0)
+	}
+}
+
+// Init the string variables
+const string_vars = list("current_app")
+for string_name in string_vars {
+	const string_var = actionsGetText(string_name)
+	if !string_var {
+		actionsSetText(string_name, "")
 	}
 }
 

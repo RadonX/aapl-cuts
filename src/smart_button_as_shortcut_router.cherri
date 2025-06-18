@@ -1,0 +1,27 @@
+/*
+    A unified entry point (e.g. the side button) that routes to per-app shortcut.
+*/
+#define name Smart Button - Shortcut Router
+#define version 17
+#include 'app_store/Actions.cherri'
+
+const action_key = "current_app" // Must use a standalone variable for iOS 17
+const current_app = actionsGetText(action_key)
+if !current_app {
+    showNotification("No current_app detected.")
+    stop()
+}
+
+const smart_app_shortcuts = {
+    "WeChat": "Smart WeChat",
+    "Weibo": "Smart Weibo",
+    "XHS": "Smart XHS"
+}
+// Get the shortcut to run for the current app
+const shortcut_name = getValue(smart_app_shortcuts, current_app)
+if !shortcut_name {
+    showNotification("No shortcut defined for {current_app}")
+    stop()
+}
+// Each shortcut will get shortcut input by itself. 
+run(shortcut_name)
