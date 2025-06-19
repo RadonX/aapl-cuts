@@ -1,0 +1,5 @@
+{
+    "shortcut": "url_or_text",
+    "description": "Uncommon URL must start with http",
+    "input": "The unsloth.ai URL can only be recognized when it starts with http: https://docs.unsloth.ai/basics/reinforcement-learning-guide"
+}

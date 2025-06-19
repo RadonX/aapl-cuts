@@ -1,0 +1,5 @@
+{
+    "shortcut": "url_or_text",
+    "description": "Recognizes 2 out of 3 URLs in text",
+    "input": "###AI\n\n1. https://www.moonbitlang.cn/blog/moonbit-x-python\n\n2. github.com/ccbikai/ssh-ai-chat\n\n3. docs.unsloth.ai/basics/reinforcement-learning-guide\n\nNo more URLs."
+}

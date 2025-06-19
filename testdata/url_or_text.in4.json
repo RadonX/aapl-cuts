@@ -1,0 +1,5 @@
+{
+    "shortcut": "url_or_text",
+    "description": "Uncommon URL not started with http is not recognized",
+    "input": "docs.unsloth.ai/basics/reinforcement-learning-guide"
+}

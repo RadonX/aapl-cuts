@@ -1,0 +1,4 @@
+<URL><Name>https://www.moonbitlang.cn/blog/moonbit-x-python</Name></URL>
+
+<URL><Name>http://github.com/ccbikai/ssh-ai-chat</Name></URL>
+

@@ -78,10 +78,9 @@ def run_shortcuts(shortcut_name: str):
             run_with_test_helper(input_path, output_path)
         else:
             run_directly(input_path, output_path)
-        if not os.path.exists(dest_path):
-            shutil.move(output_path, dest_path)
-        else:
+        if os.path.exists(dest_path):
             subprocess.run(["diff",dest_path, output_path])
+        shutil.move(output_path, dest_path)
 
 def main():
     file_name = sys.argv[1]
