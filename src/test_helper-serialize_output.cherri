@@ -1,0 +1,26 @@
+if !ShortcutInput {
+    stop()
+}
+
+@shortcut_output = ShortcutInput
+const output_type = typeOf(shortcut_output)
+const output_count = count(shortcut_output)
+
+if output_count == 1 {
+    if output_type == "URL" {
+        output("<URL><Name>{shortcut_output['Name']}</Name></URL>")
+    } else {
+        output("{shortcut_output}")
+    }
+}
+
+@output_text: text
+for output_item in shortcut_output {
+    const item_type = typeOf(output_item)
+    if item_type == "URL" {
+        @output_text += "<URL><Name>{output_item['Name']}</Name></URL>\n\n"
+    } else {
+        @output_text += "{output_item}\n\n"
+    }
+}
+output(output_text)
