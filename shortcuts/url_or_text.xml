@@ -14,7 +14,7 @@
 					<key>CustomOutputName</key>
 					<string>URLs</string>
 					<key>UUID</key>
-					<string>b0adbd33-d7a1-4dd4-9d0a-69accb3be544</string>
+					<string>628e1fa1-f476-4771-bfda-42e1c14fd773</string>
 					<key>WFInput</key>
 					<dict>
 						<key>Value</key>
@@ -43,9 +43,9 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>147be3b2-f2d2-4cbb-b463-7de2d6aedec5</string>
+					<string>ecfdec46-e8b8-47f6-aa58-6a4799a884f0</string>
 					<key>UUID</key>
-					<string>05c3603b-e88a-4be3-a06b-3a272a33d9c8</string>
+					<string>ad657fea-01b5-4758-981a-69d2e42e14fd</string>
 					<key>WFConditions</key>
 					<dict>
 						<key>Value</key>
@@ -68,7 +68,7 @@
 												<key>OutputName</key>
 												<string>URLs</string>
 												<key>OutputUUID</key>
-												<string>b0adbd33-d7a1-4dd4-9d0a-69accb3be544</string>
+												<string>628e1fa1-f476-4771-bfda-42e1c14fd773</string>
 												<key>Type</key>
 												<string>ActionOutput</string>
 											</dict>
@@ -125,11 +125,40 @@
 				<key>WFWorkflowActionParameters</key>
 				<dict>
 					<key>GroupingIdentifier</key>
-					<string>147be3b2-f2d2-4cbb-b463-7de2d6aedec5</string>
+					<string>ecfdec46-e8b8-47f6-aa58-6a4799a884f0</string>
 					<key>UUID</key>
-					<string>d1bb2791-d010-4b47-b694-4fd7a71819a8</string>
+					<string>2a3e0b4c-105a-4fe9-8003-a63057bef227</string>
 					<key>WFControlFlowMode</key>
 					<integer>2</integer>
+				</dict>
+			</dict>
+			<dict>
+				<key>WFWorkflowActionIdentifier</key>
+				<string>is.workflow.actions.output</string>
+				<key>WFWorkflowActionParameters</key>
+				<dict>
+					<key>WFOutput</key>
+					<dict>
+						<key>Value</key>
+						<dict>
+							<key>attachmentsByRange</key>
+							<dict>
+								<key>{0, 1}</key>
+								<dict>
+									<key>OutputName</key>
+									<string>URLs</string>
+									<key>OutputUUID</key>
+									<string>628e1fa1-f476-4771-bfda-42e1c14fd773</string>
+									<key>Type</key>
+									<string>ActionOutput</string>
+								</dict>
+							</dict>
+							<key>string</key>
+							<string>￼</string>
+						</dict>
+						<key>WFSerializationType</key>
+						<string>WFTextTokenString</string>
+					</dict>
 				</dict>
 			</dict>
 		</array>

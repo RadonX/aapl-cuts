@@ -1,0 +1,17 @@
+if ShortcutInput {
+    const input_as_dict = getDictionary(ShortcutInput)
+    // We need to use GetValue rather than [] to ensure the dict values are cast to Text.
+    @shortcut_name = getValue(input_as_dict, "shortcut")
+    @shortcut_input = getValue(input_as_dict, "input")
+} else {
+    @shortcut_name = prompt("Shortcut to test: ")
+    @shortcut_input = prompt("Shortcut input: ")
+}
+
+const shortcut_output = run(shortcut_name, shortcut_input)
+const output_type = typeOf(shortcut_output)
+if output_type == "URL" {
+    output("<URL><Name>{shortcut_output['Name']}</Name></URL>")
+} else {
+    output("{shortcut_output}")
+}
