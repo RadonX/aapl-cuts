@@ -1,8 +1,20 @@
 if ShortcutInput {
     const input_as_dict = getDictionary(ShortcutInput)
-    // We need to use GetValue rather than [] to ensure the dict values are cast to Text.
+    // We need to use GetValue rather than [] to ensure the dict values are compatible as action params.
     @shortcut_name = getValue(input_as_dict, "shortcut")
     @shortcut_input = getValue(input_as_dict, "input")
+    const input_type = "{input_as_dict['input_type']}" // cast input_type to text
+    if input_type != "" {
+        if input_type == "RichText" {
+            @shortcut_input = makeHTML(shortcut_input)
+        } else {
+            if input_type == "URL" {
+                @shortcut_input = url(shortcut_input)
+            } else {
+                showNotification("Input type {input_type} conversion is not supported.")
+            }
+        }
+    }
 } else {
     @shortcut_name = prompt("Shortcut to test: ")
     @shortcut_input = prompt("Shortcut input: ")

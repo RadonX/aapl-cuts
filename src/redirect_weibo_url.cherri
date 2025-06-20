@@ -14,26 +14,28 @@
 #define color darkblue
 #define glyph compass
 
-@t_cn_url = "{ShortcutInput}"
-if t_cn_url beginsWith "http://t.cn/" {
+@input_text: text
+const input_type = typeOf(ShortcutInput)
+if input_type == "URL" {
+	@input_text = ShortcutInput['Name']
 } else {
-	const t_cn_urls = matchText("(http://t.cn/\\w+)", ShortcutInput, false)
-	// Get the first t.cn URL from the input text.
-	@t_cn_url = getMatchGroup(t_cn_urls, 0)
-	if !t_cn_url {
-		stop()
-	}
+	@input_text = ShortcutInput
 }
 
-// TODO: Try Article and compare performance
-const t_cn_web = getWebpageContents(t_cn_url)
-const t_cn_content = getText(t_cn_web)
+const t_cn_links = matchText("(http://t.cn/\\w+)", input_text, false)
+// Get the first t.cn URL from the input text.
+const t_cn_link = getMatchGroup(t_cn_links, 0)
+if !t_cn_link {
+	stop()
+}
 
-// It's raw text, so we cannot use the getURLs() action.
-const match_urls = matchText("(https?://\\S+)", t_cn_content, false)
-const link = getMatchGroup(match_urls, 0)
-if link {
-	output(link)
+// TODO: Try Article, t_cn_url['Text'] and compare performance
+const t_cn_web = getWebpageContents(t_cn_link)
+const t_cn_content = getText(t_cn_web) // plain text
+
+const urls_on_t_cn = getURLs(t_cn_content)
+if urls_on_t_cn {
+	output("{urls_on_t_cn}")
 } else {
 	output(t_cn_content)
 }

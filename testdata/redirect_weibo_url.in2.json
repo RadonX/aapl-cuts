@@ -1,0 +1,6 @@
+{
+    "shortcut": "redirect_weibo_url",
+    "description": "Redirects a t.cn shorten URL",
+    "input_type": "URL",
+    "input": "http://t.cn/A6d6j1TY"
+}
