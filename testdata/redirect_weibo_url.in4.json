@@ -1,0 +1,5 @@
+{
+    "shortcut": "redirect_weibo_url",
+    "description": "Non Weibo shorten URL won't be redirected",
+    "input": "https://weibo.com/5078115336/5174532958586612"
+}

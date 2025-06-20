@@ -1,0 +1,5 @@
+{
+    "shortcut": "redirect_weibo_url",
+    "description": "Redirects a weibo.cn URL",
+    "input": "https://weibo.cn/sinaurl?toasturl=https%3A%2F%2F0xinfection.github.io%2Freversing"
+}

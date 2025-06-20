@@ -2,7 +2,7 @@
 	Extracts and resolves Weibo's shortened t.cn URL to its original destination.
 
 	Input:
-	- `ShortcutInput`: A text input containing an http://t.cn URL.
+	- `ShortcutInput`: A text input containing an http://t.cn or https://weibo.cn URL.
 
 	Output:
 	- If a valid URL is found in the t.cn web page, outputs the resolved URL.
@@ -22,8 +22,8 @@ if input_type == "URL" {
 	@input_text = ShortcutInput
 }
 
-const t_cn_links = matchText("(http://t.cn/\\w+)", input_text, false)
-// Get the first t.cn URL from the input text.
+const t_cn_links = matchText("(https?://(weibo|t)\\.cn/\\S+)", input_text, false)
+// Get the first Weibo URL from the input text.
 const t_cn_link = getMatchGroup(t_cn_links, 0)
 if !t_cn_link {
 	stop()
