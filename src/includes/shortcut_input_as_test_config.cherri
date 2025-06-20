@@ -1,0 +1,11 @@
+// Intercepts ShortcutInput to configure test input when is_testdata is true.
+if ShortcutInput {
+    const test_input_as_dict = getDictionary(ShortcutInput)
+    if test_input_as_dict {
+        const is_testdata = getValue(test_input_as_dict, "is_testdata")
+        if is_testdata {
+            @shortcut_input = getValue(test_input_as_dict, "input")
+            @output_shortcut = "test_helper-serialize_output"
+        }
+    }
+}

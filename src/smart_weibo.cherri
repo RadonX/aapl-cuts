@@ -1,59 +1,66 @@
-#define inputs text,url
+#define inputs text
 #define noinput getclipboard
 #define glyph fire
 #define color orange
 #define version 17
 #include 'app_store/Actions.cherri'
 
-const text_or_url = run("url_or_text", ShortcutInput)
-const input_type = typeOf(text_or_url)
+@shortcut_input = ShortcutInput
+@output_shortcut = "Share To +" // TODO: update shortcut
+
+// Overwrites @shortcut_input and @output_shortcut in the include only for testing.
+// This include is skippable in production.
+#include 'includes/shortcut_input_as_test_config.cherri'
+
+if shortcut_input {
+    const text_or_url = run("url_or_text", shortcut_input)
+    const input_type = typeOf(text_or_url)
+}
+
 if input_type == "URL" {
-    if text_or_url beginsWith "http://mp.weixin.qq.com" {
+    if text_or_url beginsWith "https://mp.weixin.qq.com" {
 	    run("redirect_to_wechat", text_or_url)
-        stop()
-    } else {
-        if text_or_url beginsWith "http://t.cn/" {
-            const external_url = run("redirect_weibo_url", text_or_url)
-			run("Share To +", external_url) // TODO: update shortcut
-            stop()
-        } else {
-            @weibo_url = text_or_url
+        output("Redirected to WeChat: {text_or_url}")
+    }
+    @external_url = run("redirect_weibo_url", text_or_url)
+    if !external_url {
+        if text_or_url !contains "weibo" {
+            @external_url = text_or_url
         }
     }
-} else {
-    @get_screen = false
-	if !ShortcutInput {
-		@get_screen = true
-	} else {
+    if external_url {
+        const output_for_t_cn_input = run(output_shortcut, external_url)
+        output(output_for_t_cn_input)
+    }
+
+    @weibo_url = text_or_url
+}
+
+if !weibo_url {
+    if shortcut_input {
 		menu nil {
-		item "Share: {ShortcutInput}":
-			const ShortcutResult1 = run("Share To +", ShortcutInput) // TODO: update shortcut
-			output(ShortcutResult1)
-		item "Fetch Current Post": 
-			@get_screen = true
+		item "Share: {shortcut_input}":
+			const output_for_text_input = run(output_shortcut, shortcut_input)
+			output(output_for_text_input)
+		item "Fetch Current Post":
+            // Proceed to get the current Weibo post URL below.
 		}
 	}
+	@weibo_url = getOnScreenContent()
+    if !weibo_url {
+        stop()
+    }
+    const log_msg = "SmartWeibo | Get on screen post {weibo_url} "
+    run("debug__Logging", log_msg) // TODO: update shortcut
 }
 
-if get_screen {
-	const screen_content = getOnScreenContent()
-	if screen_content {
-		@weibo_url = screen_content
-		const Text = "SmartWeibo | Get on screen post {weibo_url} "
-		run("debug__Logging", Text) // TODO: update shortcut
-	}
-}
-if !weibo_url {
-	stop()
-}
-
-const weibo_url_temp = "{weibo_url}"
-if weibo_url_temp contains "://weibo.com/" {
+const raw_url = "{weibo_url}" // Force text conversion
+if raw_url contains "://weibo.com/" {
     // The OnScreen Weibo URL requires login. Convert it to a mobile URL.
-	@weibo_url = replaceText("//weibo\\.com/\\d+", "//m.weibo.cn/status", weibo_url, false, true)
+	@weibo_url = replaceText("//weibo\\.com/\\d+", "//m.weibo.cn/status", raw_url, false, true)
 }
 
-const url_content = getArticle(weibo_url) // may should use `web`
+const url_content = getArticle(weibo_url)
 const content_word_count = count(url_content, "Characters")
 if content_word_count > 500 {
 /*
@@ -64,4 +71,4 @@ if content_word_count > 500 {
 */
 	show(url_content)
 }
-run("Share To +", url_content) // TODO: update shortcut
+run(output_shortcut, url_content)

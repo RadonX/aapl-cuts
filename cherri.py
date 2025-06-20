@@ -3,6 +3,8 @@ import sys
 import subprocess
 import shutil
 import glob
+import json
+from typing import Tuple, Optional
 
 parent_dir = os.path.join(os.path.expanduser("~"), "repo", "aapl-cuts")
 
@@ -43,8 +45,18 @@ def run_shortcuts(shortcut_name: str):
     if answer.lower().startswith("n"):
         return
 
-    def use_test_helper_shortcut(input_file: str) -> bool:
-        return input_file.endswith(".json")
+    def use_test_helper_shortcut(input_path: str) -> Tuple[bool, Optional[str]]:
+        is_json = input_path.endswith(".json")
+        if is_json:
+            with open(input_path, "r") as f:
+                try:
+                    data = json.load(f)
+                    json_is_testdata = data.get("is_testdata", False)
+                    output_type = data.get("output_type", None)
+                    return (not json_is_testdata, output_type)
+                except Exception:
+                    pass
+        return (is_json, None)
 
     def run_directly(input_path: str, output_path: str):
         subprocess.run([
@@ -60,9 +72,10 @@ def run_shortcuts(shortcut_name: str):
             f"--output-path={output_path}",
         ])
 
-    def  get_output_and_dest_paths(testdata_dir, input_file):
+    def  get_output_and_dest_paths(testdata_dir: str, input_file: str, output_type: Optional[str]) -> Tuple[str, str]:
         output_file = input_file.replace(shortcut_name + ".in", shortcut_name + ".out")
-        output_file = os.path.splitext(output_file)[0] + ".txt"
+        file_suffix = "." + output_type if output_type else ".txt"
+        output_file = os.path.splitext(output_file)[0] + file_suffix
         tmp_dir = os.path.join(testdata_dir, "tmp")
         os.makedirs(tmp_dir, exist_ok=True)
         output_path = os.path.join(tmp_dir, output_file)
@@ -73,11 +86,14 @@ def run_shortcuts(shortcut_name: str):
 
     for input_path in input_files:
         file_name = os.path.basename(input_path)
-        output_path, dest_path = get_output_and_dest_paths(testdata_dir, file_name)
-        if use_test_helper_shortcut(file_name):
+        (use_test_helper, output_type) = use_test_helper_shortcut(input_path)
+        output_path, dest_path = get_output_and_dest_paths(testdata_dir, file_name, output_type)
+        if use_test_helper:
             run_with_test_helper(input_path, output_path)
         else:
             run_directly(input_path, output_path)
+        if not os.path.exists(output_path):
+            open(output_path, "w").close()
         if os.path.exists(dest_path):
             subprocess.run(["diff",dest_path, output_path])
         shutil.move(output_path, dest_path)
