@@ -1,9 +1,10 @@
 if ShortcutInput {
-    const input_as_dict = getDictionary(ShortcutInput)
+    @input_as_dict: dictionary
+    @input_as_dict = getDictionary(ShortcutInput)
     // We need to use GetValue rather than [] to ensure the dict values are compatible as action params.
     @shortcut_name = getValue(input_as_dict, "shortcut")
     @shortcut_input = getValue(input_as_dict, "input")
-    const input_type = "{input_as_dict['input_type']}" // cast input_type to text
+    @input_type = "{input_as_dict['input_type']}" // cast input_type to text
     if input_type != "" {
         if input_type == "RichText" {
             @shortcut_input = makeHTML(shortcut_input)
@@ -25,4 +26,5 @@ const output_type = typeOf(shortcut_output)
 const output_count = count(shortcut_output)
 showNotification("{shortcut_name} outputs {output_count} item(s): {output_type}")
 
-run("test_helper-serialize_output", shortcut_output)
+const serialized_output = run("test_helper-serialize_output", shortcut_output)
+output(serialized_output)

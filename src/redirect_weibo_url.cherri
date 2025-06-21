@@ -14,15 +14,7 @@
 #define color darkblue
 #define glyph compass
 
-@input_text: text
-const input_type = typeOf(ShortcutInput)
-if input_type == "URL" {
-	@input_text = ShortcutInput['Name']
-} else {
-	@input_text = ShortcutInput
-}
-
-const t_cn_links = matchText("(https?://(weibo|t)\\.cn/\\S+)", input_text, false)
+const t_cn_links = matchText("(https?://(weibo|t)\\.cn/\\S+)", "{ShortcutInput}", false)
 // Get the first Weibo URL from the input text.
 const t_cn_link = getMatchGroup(t_cn_links, 0)
 if !t_cn_link {
