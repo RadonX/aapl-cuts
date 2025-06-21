@@ -1,0 +1,106 @@
+{
+   "WFWorkflowMinimumClientVersionString": "1113",
+   "WFWorkflowMinimumClientVersion": 1113,
+   "WFWorkflowIcon": {
+      "WFWorkflowIconStartColor": 3980825855,
+      "WFWorkflowIconGlyphNumber": 59722
+   },
+   "WFWorkflowClientVersion": "3607.0.2",
+   "WFWorkflowOutputContentItemClasses": [],
+   "WFWorkflowHasOutputFallback": false,
+   "WFWorkflowNoInputBehavior": {
+      "Name": "WFWorkflowNoInputBehaviorGetClipboard",
+      "Parameters": {}
+   },
+   "WFWorkflowActions": [
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.runworkflow",
+         "WFWorkflowActionParameters": {
+            "WFInput": {
+               "Value": {
+                  "Type": "ExtensionInput"
+               },
+               "WFSerializationType": "WFTextTokenAttachment"
+            },
+            "WFWorkflow": {
+               "workflowIdentifier": "3DEE6822-8DAD-4E67-A6E6-D2D6FA65DC81",
+               "workflowName": "Page Content",
+               "isSelf": false
+            },
+            "UUID": "72C85930-6721-43A4-A10A-A3CE496305DA",
+            "WFWorkflowName": "Page Content"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+         "WFWorkflowActionParameters": {
+            "WFTextActionText": {
+               "Value": {
+                  "string": " [ARTICLE]=\n```\n\uFFFC\n```\n\nSummarize [ARTICLE] in a short short summary of LESS THAN 300 tokens. If [ARTICLE] is too long, SPLIT your answer into multiple messages. Don't make a conclusion. Choose words that match the style of [ARTICLE]. You MUST reply in the language of [ARTICLE].",
+                  "attachmentsByRange": {
+                     "{16, 1}": {
+                        "OutputUUID": "72C85930-6721-43A4-A10A-A3CE496305DA",
+                        "Type": "ActionOutput",
+                        "OutputName": "Shortcut Result"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "UUID": "9EC147AA-2C54-49C9-9959-3AFF61898252"
+         }
+      },
+      {
+         "WFWorkflowActionIdentifier": "com.openai.chat.AskIntent",
+         "WFWorkflowActionParameters": {
+            "prompt": {
+               "Value": {
+                  "string": "\uFFFC",
+                  "attachmentsByRange": {
+                     "{0, 1}": {
+                        "OutputUUID": "9EC147AA-2C54-49C9-9959-3AFF61898252",
+                        "Type": "ActionOutput",
+                        "OutputName": "Text"
+                     }
+                  }
+               },
+               "WFSerializationType": "WFTextTokenString"
+            },
+            "continuous": true,
+            "newChat": true,
+            "UUID": "29C5FFAB-BF3C-4F95-A55C-BEFB74B4511D",
+            "AppIntentDescriptor": {
+               "TeamIdentifier": "2DC432GLL2",
+               "BundleIdentifier": "com.openai.chat",
+               "Name": "ChatGPT",
+               "AppIntentIdentifier": "AskIntent"
+            },
+            "model": {
+               "subtitle": {
+                  "key": "GPT-4o"
+               },
+               "title": {
+                  "key": "GPT-4o"
+               },
+               "identifier": "gpt-4o"
+            },
+            "ShowWhenRun": true
+         }
+      }
+   ],
+   "WFWorkflowInputContentItemClasses": [
+      "WFArticleContentItem",
+      "WFRichTextContentItem",
+      "WFSafariWebPageContentItem",
+      "WFStringContentItem",
+      "WFURLContentItem"
+   ],
+   "WFWorkflowImportQuestions": [],
+   "WFQuickActionSurfaces": [],
+   "WFWorkflowTypes": [
+      "Watch",
+      "ActionExtension",
+      "NCWidget"
+   ],
+   "WFWorkflowHasShortcutInputVariables": true
+}
