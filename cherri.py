@@ -24,8 +24,6 @@ def move_to_shortcuts(shortcut_name, suffix="") -> str:
     dest_path = os.path.join(parent_dir, "shortcuts", shortcut_name + suffix)
     if os.path.exists(src_path):
         shutil.move(src_path, dest_path)
-    else:
-        print(f"Source file {src_path} does not exist.")
     return dest_path
 
 def git_add_files(*files):
@@ -46,19 +44,23 @@ def run_shortcuts(shortcut_name: str):
         return
 
     def use_test_helper_shortcut(input_path: str) -> Tuple[bool, Optional[str]]:
-        is_json = input_path.endswith(".json")
+        is_json = input_path.endswith(".json") 
         if is_json:
+            # Read the JSON file to determine if it is test_helper input
             with open(input_path, "r") as f:
                 try:
                     data = json.load(f)
-                    json_is_testdata = data.get("is_testdata", False)
+                    # test_helper.shortcut doesn't overwrite io, so its json input won't have this field
+                    json_is_shortcut_input = data.get("overwrite_io", False)
+                    # Need to use the correct output type for the test_helper to dump output successfully
                     output_type = data.get("output_type", None)
-                    return (not json_is_testdata, output_type)
+                    return (not json_is_shortcut_input, output_type)
                 except Exception:
                     pass
         return (is_json, None)
 
     def run_directly(input_path: str, output_path: str):
+        # https://support.apple.com/guide/shortcuts-mac/apd455c82f02/mac
         subprocess.run([
             "shortcuts", "run", shortcut_name,
             f"--input-path={input_path}",

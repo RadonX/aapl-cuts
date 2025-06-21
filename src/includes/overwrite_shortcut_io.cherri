@@ -1,0 +1,11 @@
+// Intercepts ShortcutInput when overwrite_io is true.
+if ShortcutInput {
+    const overwrite_shortcut_io_dict = getDictionary(ShortcutInput)
+    if overwrite_shortcut_io_dict {
+        const should_overwrite_shortcut_io = getValue(overwrite_shortcut_io_dict, "overwrite_io")
+        if should_overwrite_shortcut_io {
+            @shortcut_input = getValue(overwrite_shortcut_io_dict, "input")
+            @output_shortcut = "test_helper-serialize_output"
+        }
+    }
+}

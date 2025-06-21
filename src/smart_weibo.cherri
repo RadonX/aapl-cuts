@@ -8,9 +8,9 @@
 @shortcut_input = ShortcutInput
 @output_shortcut = "Share To +" // TODO: update shortcut
 
-// Overwrites @shortcut_input and @output_shortcut in the include only for testing.
+// Overwrites @shortcut_input and @output_shortcut only for testing.
 // This include is skippable in production.
-#include 'includes/shortcut_input_as_test_config.cherri'
+#include 'includes/overwrite_shortcut_io.cherri'
 
 if shortcut_input {
     const text_or_url = run("url_or_text", shortcut_input)
@@ -54,14 +54,28 @@ if !weibo_url {
     run("debug__Logging", log_msg) // TODO: update shortcut
 }
 
-const raw_url = "{weibo_url}" // Force text conversion
-if raw_url contains "://weibo.com/" {
+const weibo_link = "{weibo_url}" // Force text conversion
+if weibo_link contains "://weibo.com/" {
     // The OnScreen Weibo URL requires login. Convert it to a mobile URL.
-	@weibo_url = replaceText("//weibo\\.com/\\d+", "//m.weibo.cn/status", raw_url, false, true)
+	// const converted_link = replaceText("//weibo\\.com/\\d+", "//m.weibo.cn/status", weibo_link, false, true)
+	const converted_link = replaceText("//weibo\\.com/", "//m.weibo.cn/", weibo_link, false, true)
+    @weibo_url = url(converted_link)
 }
 
-const url_content = getArticle(weibo_url)
-const content_word_count = count(url_content, "Characters")
+const article = getArticle(weibo_url)
+const content_word_count = count(article, "Characters")
+
+if content_word_count == 0 {
+    showNotification("No article at {weibo_url}", "", false)
+    const web_page_as_rich_text = getWebpageContents(weibo_url)
+    // const html_of_rendered_page = makeHTML(web_page_as_rich_text, true)
+    // const compact_web_page = getRichTextFromHTML(html_of_rendered_page)
+    @url_content = makeMarkdown(web_page_as_rich_text) // getText() or implicit text conversion drops hyperlinks
+    @url_content = "{weibo_url}\n\n{url_content}" // Append web content to the URL, because the fetching may fail.
+} else {
+    @url_content = article['Body']
+}
+
 if content_word_count > 500 {
 /*
     TODO:
@@ -69,6 +83,6 @@ if content_word_count > 500 {
     www.decarpentier.nl/carpentopod works with show() 
     Weibo status doesn’t 
 */
-	show(url_content)
+	show(url_content) // show() text drops hyperlinks
 }
-run(output_shortcut, url_content)
+run(output_shortcut, url_content) // url_content is a rich text

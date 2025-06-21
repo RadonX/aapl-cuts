@@ -1,0 +1,8 @@
+{
+    "shortcut": "smart_weibo",
+    "description": "This type of Weibo URL needs to be processed with web rendering to execute scripts.",
+    "input": {
+        "overwrite_io": true,
+        "input": "http://weibo.com/1697716777/PxhY1BnCI"
+    }
+}
