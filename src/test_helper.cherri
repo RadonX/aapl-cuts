@@ -7,7 +7,7 @@ if ShortcutInput {
     @input_type = "{input_as_dict['input_type']}" // cast input_type to text
     if input_type != "" {
         if input_type == "RichText" {
-            @shortcut_input = makeHTML(shortcut_input)
+            @shortcut_input = getRichTextFromHTML(shortcut_input)
         } else {
             if input_type == "URL" {
                 @shortcut_input = url(shortcut_input)

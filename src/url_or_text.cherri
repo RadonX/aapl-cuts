@@ -8,13 +8,20 @@
 	- If the input containes any URL, the shortcut outputs the URL(s) extracted from the input.
 	- If the input doesn't contain URLs, the shortcut outputs the original input unchanged.
 */
-#define inputs text,url
+#define inputs text,url,richtext
 #define noinput askfor text
 #define color darkgray
 #define glyph braille
 
-const URLs = getURLs(ShortcutInput)
-if !URLs {
-	output(ShortcutInput)
+// See the test cases to understand this shortcut's behavior.
+
+const found_urls = getURLs(ShortcutInput)
+if found_urls {
+	// @user_name shouldn't be recoginized as a URL
+	if found_urls beginsWith "@" {
+	} else {
+		output("{found_urls}")
+	}
 }
-output("{URLs}")
+
+output(ShortcutInput)	
