@@ -12,6 +12,7 @@
 #define noinput askfor text
 #define color darkgray
 #define glyph braille
+#define version 17
 
 // See the test cases to understand this shortcut's behavior.
 
